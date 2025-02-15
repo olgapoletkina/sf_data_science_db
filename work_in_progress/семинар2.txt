@@ -1,0 +1,64 @@
+-- создаем таблицу
+create table superstore_20250802 (
+	 row_id int4
+	,order_id text
+	,order_date text
+	,ship_date varchar(20)
+	,ship_mode varchar(20)
+	,customer_id text
+	,customer_name text
+	,segment text
+	,country text
+	,city text
+	,state text
+	,postal_code text
+	,region  text
+	,product_id     text
+	,category       text
+	,sub_category   text
+	,product_name   text
+	,sales float4
+)
+
+-- загружаем данные в таблицу 2 способами
+-- 1. csv
+-- 2. insert into
+
+insert into superstore_20250802 values 
+(1,'CA-2017-152156','8/11/2017','11/11/2017','Second Class','CG-12520','Claire Gute','Consumer','United States','Henderson','Kentucky','42420','South','FUR-BO-10001798','Furniture','Bookcases','Bush Somerset Collection Bookcase',261.96),
+(1,'CA-2017-152156','8/11/2017','11/11/2017','Second Class','CG-12520','Claire Gute','Consumer','United States','Henderson','Kentucky','42420','South','FUR-BO-10001798','Furniture','Bookcases','Bush Somerset Collection Bookcase',261.96),
+(1,'CA-2017-152156','8/11/2017','11/11/2017','Second Class','CG-12520','Claire Gute','Consumer','United States','Henderson','Kentucky','42420','South','FUR-BO-10001798','Furniture','Bookcases','Bush Somerset Collection Bookcase',261.96)
+
+-- добавляем колонку с дефолтным значением
+alter table superstore_20250802 add phone_2 varchar(20) not null default '88005550505';
+
+-- удаляем колокну из таблицы
+alter table superstore_20250802 drop column phone;
+
+-- переименуем колонку 
+alter table superstore_20250802 rename column phone_2 to phone;
+
+--  меняем колонку order_id и ставим условие, что значения не могут быть null
+alter table superstore_20250802 alter column order_id set not null;
+
+-- меняем тип данных для поля order_date
+alter table superstore_20250802 alter column order_date type varchar(20);
+
+-- задаем ключ для таблицы
+alter table superstore_20250802 add primary key(row_id);
+
+-- переименуем название таблицы
+alter table superstore_new rename to superstore_new_v2;
+
+-- очищаем таблицу от данных
+truncate table superstore_20250802;
+
+-- удалчем таблицу
+drop table superstore_20250802;
+
+
+
+
+
+
+
